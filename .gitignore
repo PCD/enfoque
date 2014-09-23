@@ -4,4 +4,6 @@ cache
 
 # Ignore paths that contain user-generated content.
 sites/*/files
+sites/*/pvt
+sites/*/tmp
 sites/*/private
