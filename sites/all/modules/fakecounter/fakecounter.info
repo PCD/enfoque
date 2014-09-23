@@ -1,0 +1,5 @@
+name = FakeCounter
+description = A fake counter module
+package = PCD
+core = 7.x
+version = "7.x-3.3-beta5"

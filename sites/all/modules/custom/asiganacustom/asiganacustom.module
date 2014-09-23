@@ -1,0 +1,4 @@
+<?php
+include_once('inc/permission.inc');
+include_once('inc/form_alter.inc');
+include_once('inc/node_prepare.inc');

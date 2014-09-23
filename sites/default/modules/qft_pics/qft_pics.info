@@ -1,0 +1,5 @@
+name = QuienFalto Fotos
+description = Allows the Current Website to have a path where all pictures can be loaded.
+core = 7.x
+configure = admin/config/media/qft_pics
+version = "7.x-1"

@@ -1,0 +1,68 @@
+<?php
+/** 
+ * Implements hook_fboauth_user_properties_alter().
+ */
+function pcdfacebook_fboauth_user_properties_alter(&$properties) {
+  // Allow the location property to be mapped to Addressfield typed fields.
+  $properties['location']['field_types'][] = 'addressfield';
+  $properties['link']['field_types'][] = 'link_field';
+}
+
+/**
+ * Implements hook_fboauth_field_convert_info().
+ */
+function pcdfacebook_fboauth_field_convert_info_alter(&$convert_info) { 
+  $convert_info += array(
+    'addressfield' => array(
+      'label' => t('Address Field'), 
+      'callback' => 'pcdfacebook_fboauth_field_convert_location', 
+    ), 
+    'link_field' => array(
+      'label' => t('Link Field'), 
+      'callback' => 'pcdfacebook_fboauth_field_convert_link', 
+    ), 
+  ); 
+}
+
+/**
+ * Facebook data conversion function.
+ * Converts an incoming Facebook location (which is an object) into an array compatible with the addressfield module.
+ */ 
+function pcdfacebook_fboauth_field_convert_location($facebook_property_name, $fbuser, $field, $instance) {
+  $value = NULL;
+  if ($field['type'] == 'addressfield' && isset($fbuser->location) && module_exists('geocoder')) {
+    $geodata = geocoder('google', $fbuser->location->name);
+    foreach ($geodata->data['geocoder_address_components'] as $key => $components) {
+      switch($components->types[0]) {
+        // Set city.
+        case 'locality':
+          $value['locality'] = $components->short_name;
+          break;
+        
+        // Set state.
+        case 'administrative_area_level_1':
+          $value['administrative_area'] = $components->short_name;
+          break;
+        
+        // Set country.
+        case 'country':
+          $value['country'] = $components->short_name;
+          break;
+      }
+    }
+  }
+  return $value;
+}
+
+/**
+ * Facebook data conversion function.
+ * Converts an incoming Facebook location (which is an object) into an array compatible with the addressfield module.
+ */ 
+function pcdfacebook_fboauth_field_convert_link($facebook_property_name, $fbuser, $field, $instance) {
+  $value = NULL;
+  if ($field['type'] == 'link_field' && isset($fbuser->link) ) {
+    $value['url'] = $fbuser->link;
+    $value['title'] = 'Facebook';
+  }
+  return $value;
+}

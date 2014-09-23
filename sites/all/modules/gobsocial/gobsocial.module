@@ -1,0 +1,3 @@
+<?php
+include_once('inc/blocks.inc');
+include_once('inc/buttons.inc');

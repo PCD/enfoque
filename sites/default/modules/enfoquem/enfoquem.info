@@ -1,0 +1,6 @@
+name = Enfoque
+description = Custom Blocks
+core = 7.x
+package = Enfoque
+version = "7.x-1"
+core = "7.x"

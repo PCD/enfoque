@@ -1,0 +1,163 @@
+diff --git a/context.core.inc b/context.core.inc
+index cff0aec..6c6ab8c 100644
+--- a/context.core.inc
++++ b/context.core.inc
+@@ -327,9 +327,6 @@ function context_context_page_condition() {
+  * Implementation of hook_context_page_reaction().
+  */
+ function context_context_page_reaction() {
+-  if ($plugin = context_get_plugin('reaction', 'breadcrumb')) {
+-    $plugin->execute();
+-  }
+   if ($plugin = context_get_plugin('reaction', 'css_injector')) {
+     $plugin->execute();
+   }
+@@ -342,9 +339,6 @@ function context_context_page_reaction() {
+  * Implementation of hook_preprocess_page().
+  */
+ function context_preprocess_page(&$vars) {
+-  if ($plugin = context_get_plugin('reaction', 'menu')) {
+-    $plugin->execute($vars);
+-  }
+   if ($plugin = context_get_plugin('reaction', 'theme')) {
+     $plugin->execute($vars);
+   }
+@@ -359,6 +353,19 @@ function context_preprocess_page(&$vars) {
+ }
+ 
+ /**
++* Implementation of hook_delivery_callback_alter().
++* Based on menu_position's and menu_trail_by_path's implementations.
++*/
++function context_page_delivery_callback_alter() {
++  if ($plugin = context_get_plugin('reaction', 'menu')) {
++    $plugin->execute();
++  }
++  if ($plugin = context_get_plugin('reaction', 'breadcrumb')) {
++    $plugin->execute();
++  }
++}
++
++/**
+  * Implementation of hook_preprocess_html().
+  */
+ function context_preprocess_html(&$vars) {
+diff --git a/plugins/context_reaction_menu.inc b/plugins/context_reaction_menu.inc
+index e51143b..49e4c46 100644
+--- a/plugins/context_reaction_menu.inc
++++ b/plugins/context_reaction_menu.inc
+@@ -50,17 +50,34 @@ class context_reaction_menu extends context_reaction {
+   }
+ 
+   /**
+-   * If primary + secondary links are pointed at the same menu, provide
+-   * contextual trailing by default.
++   * Provide active trail in all menus in which our path appears.
+    */
+   function execute(&$vars = NULL) {
+-    if (variable_get('menu_main_links_source', 'main-menu') == variable_get('menu_secondary_links_source', 'user-menu')) {
+-      $vars['main_menu'] = theme_get_setting('toggle_main_menu') ? $this->menu_navigation_links(variable_get('menu_main_links_source', 'main-menu')) : $vars['main_menu'];
+-      $vars['secondary_menu'] = theme_get_setting('toggle_secondary_menu') ? $this->menu_navigation_links(variable_get('menu_secondary_links_source', 'secondary-links'), 1) : $vars['secondary_menu'];
++    $paths = array();
++    foreach($this->get_active_paths() as $path) {
++     $paths[] = $path;
++    }
++    if(count($paths)>0) {
++      $query = db_select('menu_links', 'm')->fields('m', array('link_path', 'mlid', 'menu_name'))->condition('m.link_path', $paths, 'IN')->execute();
++      while($menu = $query->fetchObject()) {
++        $path = $menu->link_path;
++        menu_tree_set_path($menu->menu_name, $path);
++        $item = menu_link_load($menu->mlid);
++        $route = array();
++        while($item) {
++          array_unshift($route, $item);
++          $item = menu_link_load($item['plid']);
++        }
++        array_unshift($route, array(
++          'title' => t('Home'),
++          'href' => '<front>',
++          'link_path' => '',
++          'localized_options' => array(),
++          'type' => 0,
++        ));
++        menu_set_active_trail($route);
++      }
+     }
+-
+-    $vars['main_menu'] = $this->menu_set_active($vars['main_menu']);
+-    $vars['secondary_menu'] = $this->menu_set_active($vars['secondary_menu']);
+   }
+ 
+   function get_active_paths() {
+@@ -72,71 +89,4 @@ class context_reaction_menu extends context_reaction {
+     }
+     return $active_paths;
+   }
+-
+-  /**
+-   * Iterates through a provided links array for use with theme_links()
+-   * (e.g. from menu_primary_links()) and provides an active class for
+-   * any items that have a path that matches an active context.
+-   *
+-   * @param $links
+-   *   An array of links.
+-   * @param $reset
+-   *   A boolean flag for resetting the static cache.
+-   *
+-   * @return
+-   *   A modified links array.
+-   */
+-  function menu_set_active($links = array(), $reset = FALSE) {
+-    $new_links = array();
+-    if (!empty($links)) {
+-      $active_paths = $this->get_active_paths();
+-
+-      // Iterate through the provided links and build a new set of links
+-      // that includes active classes
+-      foreach ($links as $key => $link) {
+-        if (!empty($link['href']) && in_array($link['href'], $active_paths)) {
+-          $link['attributes']['class'][] = 'active';
+-
+-          if (strpos(' active', $key) === FALSE) {
+-            $new_links[$key . ' active'] = $link;
+-          }
+-        }
+-        else {
+-          $new_links[$key] = $link;
+-        }
+-      }
+-    }
+-    return $new_links;
+-  }
+-
+-  /**
+-   * Wrapper around menu_navigation_links() that gives themers the option of
+-   * building navigation links based on an active context trail.
+-   */
+-  function menu_navigation_links($menu_name, $level = 0) {
+-    // Retrieve original path so we can repair it after our hack.
+-    $original_path = $_GET['q'];
+-    $original_menu_trail = drupal_static('menu_set_active_trail');
+-
+-    // Retrieve the first active menu path found.
+-    if ($active_paths = $this->get_active_paths()) {
+-      $path = current($active_paths);
+-      if (menu_get_item($path)) {
+-        menu_set_active_item($path);
+-      }
+-    }
+-
+-    // Build the links requested
+-    if (module_exists('i18n_menu')) {
+-      $links = i18n_menu_navigation_links($menu_name, $level);
+-    } else {
+-      $links = menu_navigation_links($menu_name, $level);
+-    }
+-
+-    // Repair and get out
+-    menu_set_active_item($original_path);
+-    $repair_menu_trail = &drupal_static('menu_set_active_trail');
+-    $repair_menu_trail = $original_menu_trail;
+-    return $links;
+-  }
+ }

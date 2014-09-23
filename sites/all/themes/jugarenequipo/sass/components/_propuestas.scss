@@ -1,0 +1,65 @@
+body.page-propuestas {
+	h1{
+		color: $rojo_base ;
+		font-size: 110px ;
+		font-weight:100;
+		text-decoration: none;
+	}	
+}
+
+.view-propuestas{
+	width: 1200px ;
+	margin: 0 auto ;
+	.group-left{
+		width: 600px;
+	}
+
+	.group-right{
+		width: 600px;
+		padding-left: 100px ;
+		padding-right: 100px ;
+		text-align: left ;
+		h2 a{  
+			color: #fff ;
+			text-shadow: 2px 2px 2px #000 ;
+			font-size: 45px ;
+			margin:0px;
+			text-decoration: none;
+		}
+
+		p{
+			color: #fff ;
+			font-size: 25px ;
+		}
+	}
+}
+
+.node-type-propuesta{
+	article{
+		width: 1200px;
+		margin: 0 auto ;
+
+		.field--name-field-imagen-propuesta{
+			width: 600px;
+			margin: 45px auto;
+		}
+
+		.field--name-body{
+			width: 600px;
+			margin: 30px auto;
+			color: #fff;
+			font-size: 40px;
+			text-align: left;
+		}
+	}
+
+	#block-facebook-comments-box-facebook-comments-box{
+			background: #fff;
+			padding-top: 40px;
+			padding-bottom: 80px;
+			margin-bottom: -90px;
+			h2{
+				display: none;
+			}
+	}
+}

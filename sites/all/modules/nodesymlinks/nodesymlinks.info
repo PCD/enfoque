@@ -1,0 +1,10 @@
+name = NodeSymlinks
+description = "Allows a node to appear in multiple places in the menu hierarchy, while preventing duplicate indexing through META ROBOTS tags."
+core = 7.x
+
+; Information added by drupal.org packaging script on 2012-06-27
+version = "7.x-1.0-beta2"
+core = "7.x"
+project = "nodesymlinks"
+datestamp = "1340791318"
+

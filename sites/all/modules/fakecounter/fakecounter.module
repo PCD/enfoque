@@ -1,0 +1,6 @@
+<?php
+include_once('inc/data.inc');
+include_once('inc/init.inc');
+include_once('inc/theme.inc');
+include_once('inc/permission.inc');
+include_once('inc/menu.inc');

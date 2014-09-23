@@ -1,0 +1,109 @@
+
+.view-el-equipo{
+
+	width: 1200px ;
+	margin: 100px auto ;
+
+	.group-left, .group-right{
+		background: rgba(0,0,0,0.4) ;
+		width: 100% ;
+		margin: 0 auto ; 
+		paddin: 0px 200px;
+ 	}
+
+
+	.group-left{
+		width: 600px ;
+
+	}
+	.group-right{
+		width: 600px ;
+		color: #fff ;
+		font-size: 30px ;
+		padding-top: 140px;
+		height: 450px;
+		text-align: left ;
+		div{
+			margin-bottom: 10px ;
+		}
+		.field__items h2{
+			margin-top: -10px ;
+		}
+	}
+
+	.group-header{
+		background: none ;
+		color: #fff ;
+		font-size: 85px ;
+		margin-bottom: 25px ;
+		margin-top: -20px ;
+		font-size: 85px ;
+		text-shadow: 3px 3px 2px #000 ;
+	}
+
+
+	.group-right .field--label-hidden{
+		display: inline-block ;
+		margin-right: 20px ;
+		margin-top: 10px ;
+		text-align: left ;
+	}
+
+	.view-integrantes-del-equipo{
+		width: 1200px ;
+		margin: 0 auto ;
+	}
+
+	.view-id-el_equipo .field--name-field-fb-candidato img{
+		float: left ;
+		display: block ;
+		margin-top: 20px ;
+
+	}
+
+	.view-id-el_equipo .field--name-field-tw-candidato img{
+		float: left ;
+		display: block ;
+		margin-top: 20px ;
+	}
+
+	#views_slideshow_controls_text_pause_el_equipo-page a{
+		display: none ;
+	}
+
+	#views_slideshow_controls_text_previous_el_equipo-page{
+		width: 80px ;
+		height: 80px ;
+		border-radius: 40px;
+		display: block ;
+		text-indent: - 9999px; 
+		margin-left: -90px;
+		margin-top: -270px;
+		margin-bottom: 250px;
+		background: #fff ;
+		transition: 0.3s ;
+	}
+
+	#views_slideshow_controls_text_previous_el_equipo-page:hover{
+		background: url("../images/izquierda.png") no-repeat center center ,red ;
+	}
+
+	#views_slideshow_controls_text_next_el_equipo-page{
+		width: 80px ;
+		height: 80px ;
+		border-radius: 40px ;
+		text-indent: - 9999px; 
+		display: block ;
+		margin-left: 1210px;
+		margin-top: -330px;
+		margin-bottom: 250px;
+		background: #fff ;
+		transition: 0.3s ;
+	}
+
+	#views_slideshow_controls_text_next_el_equipo-page:hover{
+		background: url("../images/derecha.png") no-repeat center center ,red ;
+	}
+	
+
+}

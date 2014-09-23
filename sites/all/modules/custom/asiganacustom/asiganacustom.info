@@ -1,0 +1,4 @@
+name = Asigana Custom
+description = "Provides Custom features for Asi Gana la Gente"
+package = PCD
+core = 7.x

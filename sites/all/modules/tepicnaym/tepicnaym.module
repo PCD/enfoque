@@ -1,0 +1,424 @@
+<?php
+require 'libs/facebook-php-sdk/src/facebook.php';
+
+function tepicnaym_permission() {
+  return array(
+    'enviar mensajes' => array(
+      'title' => 'enviar mensajes', 
+      'description' => 'enviar mensajes', 
+    ), 
+  );
+}
+
+function tepicnaym_menu() {
+  $items = array();
+  $items['mensajes-gratis'] = array(
+    'title' => 'Mensajes Gratis', 
+    'page callback' => 'tepicnaym_menu_mensajes', 
+    'access arguments' => array('enviar mensajes'), 
+    'type' => MENU_CALLBACK, 
+  );
+  $items['mensajes-gratis-prueba'] = array(
+    'title' => 'Mensajes Gratis', 
+    'page callback' => 'tepicnaym_menu_cargar', 
+    'access arguments' => array('enviar mensajes'), 
+    'type' => MENU_CALLBACK, 
+  );
+  return $items;
+}
+
+function tepicnaym_block_info() {
+  $blocks['mensaje_form'] = array(
+    'info' => t('Formulario de Mensaje'), 
+    'cache' => DRUPAL_NO_CACHE, 
+  );
+
+  return $blocks;
+}
+
+function tepicnaym_block_view($delta = '') {
+  $block = array();
+
+  switch($delta) {
+    case 'mensaje_form':
+      $block['subject'] = '';
+      $form = drupal_get_form('tepicnaym_message_form2');
+      $block['content'] = "<div id='envia-mensajes-gratis'>\n" . drupal_render($form) . "</div>\n";
+      break;
+  }
+
+  return $block;
+}
+
+function tepicnaym_menu_mensajes() {
+  /*global $user;
+  if ( $user->uid == 0 ) {
+    // Anonymo
+    return tepicnaym_login();
+  }*/
+
+  return "<div id='envia-mensajes-gratis'>\n" . drupal_render(drupal_get_form('tepicnaym_message_form')) . "</div>\n";
+}
+
+function tepicnaym_message_form($form, &$form_state) {
+  $form['intro'] = array(
+    '#type' => 'item', 
+    '#markup' => '<p class="green">Env&iacute;a mensajes Gratis!!<br/>y participa para Ganar saldo para tu celular.</p>', 
+    '#weight' => -2, 
+  );
+  global $user;
+  if ( $user->uid > 0 ) {
+    $user = user_load($user->uid);
+    if ( empty($user->field_celular) ) {
+      $form['origen'] = array(
+        '#type' => 'fieldset', 
+        '#title' => t('Tus Datos'), 
+        '#weight' => -1, 
+      );
+      $form['origen']['my_cellphone'] = array(
+        '#type' => 'textfield', 
+        '#title' => t('Celular'), 
+        '#element_validate' => array('tepicnaym_message_form_validate_phone'),
+        '#required' => TRUE, 
+        '#weight' => 0, 
+      );
+      $form['origen']['my_cellphone_company'] = array(
+        '#type' => 'select', 
+        '#title' => t('Compa&ntilde;&iacute;a de Celular'), 
+        '#options' => array(
+          'telcel' => 'Telcel', 
+          'movistar' => 'Movistar', 
+          'iusacell' => 'Iusacell', 
+          'otra' => 'Otra', 
+        ), 
+        '#required' => TRUE, 
+        '#weight' => 1, 
+      );
+    }
+  }
+  $form['destino'] = array(
+    '#type' => 'fieldset', 
+    '#title' => t('Enviar mensaje a'), 
+    '#weight' => 0, 
+  );
+  $form['destino']['name'] = array(
+    '#type' => 'textfield', 
+    '#title' => t('Nombre'), 
+    '#required' => TRUE, 
+    '#weight' => 0, 
+  );
+  $form['destino']['cellphone'] = array(
+    '#type' => 'textfield', 
+    '#title' => t('Numero de Cel'), 
+    '#required' => TRUE, 
+    '#element_validate' => array('tepicnaym_message_form_validate_phone', 'tepicnaym_message_form_validate_phone_lada'),
+    '#weight' => 3, 
+  );
+  $form['destino']['message'] = array(
+    '#type' => 'textarea', 
+    '#title' => t('Mensaje'), 
+    '#required' => TRUE, 
+    '#maxlength' => 110, 
+    '#maxlength_js' => TRUE, 
+    '#weight' => 5, 
+  );
+  $form['submit'] = array(
+    '#type' => 'submit', 
+    '#value' => t('Enviar Mensaje'), 
+    '#weight' => 6, 
+  );
+  return $form;
+}
+
+function tepicnaym_message_form2($form, &$form_state) {
+  $form['intro'] = array(
+    '#type' => 'item', 
+    '#markup' => '<p class="green">Env&iacute;a mensajes Gratis!!<br/>y participa para Ganar saldo.</p>', 
+    '#weight' => -2, 
+  );
+  $form['name'] = array(
+    '#type' => 'textfield', 
+    '#placeholder' => t('Nombre'), 
+    '#required' => TRUE, 
+    '#weight' => 0, 
+  );
+  $form['cellphone'] = array(
+    '#type' => 'textfield', 
+    '#placeholder' => t('Numero de Cel'), 
+    '#required' => TRUE, 
+    '#element_validate' => array('tepicnaym_message_form_validate_phone', 'tepicnaym_message_form_validate_phone_lada'),
+    '#weight' => 3, 
+  );
+  $form['message'] = array(
+    '#type' => 'textarea', 
+    '#placeholder' => t('Mensaje'), 
+    '#required' => TRUE, 
+    '#maxlength' => 110, 
+    '#maxlength_js' => TRUE, 
+    '#weight' => 5, 
+  );
+  $form['submit'] = array(
+    '#type' => 'submit', 
+    '#value' => t('Enviar Mensaje'), 
+    '#weight' => 6, 
+  );
+  return $form;
+}
+
+function tepicnaym_message_form_validate_phone($element, &$form_state) {
+  $number = tepicnaym_clean_phone($element['#value']);
+  if ( strlen($number) != 10 ) {
+    form_error($element, t('El numero de celular escrito es incorrecto, por favor escribe un n&uacute;mero valido de 10 digitos.'));
+  }
+}
+
+function tepicnaym_message_form_validate_phone_lada($element, &$form_state) {
+  $number = tepicnaym_clean_phone($element['#value']);
+  $lada = substr($number, 0, 3);
+  $ladas_validas = array('325', '324', '323', '324', '323', '311', '323', '329', '323', '327', '319', '319', '327', '329', '327', '329', '311', '323', '323', '327', '329', '311', '323', '325', '327', '324', '324', '327', '323', '327', '327', '327', '329', '389', '327', '327', '322', '319', '311', '323', '389', '327', '319', '319', '323', '311', '389', '311', '329', '329', '327', '329', '323', '327', '323', '323', '323', '389', '311', '324', '324', '319', '329', '323', '323', '311', '327');
+  if ( !in_array($lada, $ladas_validas) ) {
+    form_error($element, t('Lo sentimos, este servicio esta disponible solo para Nayarit.'));
+  }
+}
+
+function tepicnaym_clean_phone($phone) {
+  return preg_replace('/[^0-9]/msi', '', $phone);
+}
+
+function tepicnaym_message_form_submit_update_current_user($form_state) {
+  // Update user
+  global $user;
+  if ( $user->uid > 0 ) {
+    $user = user_load($user->uid);
+    $edit = array();
+    $edit['field_celular'][LANGUAGE_NONE][]['value'] = tepicnaym_clean_phone($form_state['values']['my_cellphone']);
+    $edit['field_compania_celular'][LANGUAGE_NONE][]['value'] = $form_state['values']['my_cellphone_company'];
+    $user = user_save($user, $edit);
+    drupal_set_message("Hemos actualizado tus Datos.");
+  }
+}
+
+function tepicnaym_message_form_submit_message($form_state) {
+  $mensaje = $form_state['values']['message'] . " - Envia mensajes GRATIS www.tepicnay.mx";
+  $params = array(
+    'user' => variable_get('tepicnay_user', 'pepev28@gmail.com'), 
+    'pass' => variable_get('tepicnay_pass', '@gmail.com'), 
+    'mensaje' => $mensaje, 
+    'telefono' => tepicnaym_clean_phone($form_state['values']['cellphone']), 
+    'plataforma' => variable_get('tepicnay_plataforma', '99'), 
+    'val' => variable_get('tepicnay_val', '1'), 
+  );
+  $url = "http://tecnomovilsms.com/sms/send/index.php";
+  
+  $result = curl_get($url, $params);
+  drupal_set_message(t("Tu Mensaje ha sido enviado exitosamente."));
+}
+
+function tepicnaym_message_form_submit($form, &$form_state) {
+  // Update user
+  if ( isset($form_state['values']['my_cellphone']) ) {
+    tepicnaym_message_form_submit_update_current_user($form_state);
+  }
+
+  // Register destino
+  $nid = 0;
+  $mensajes_enviados = 1;
+  if ( ($node = tepicnaym_node_load_by_phone(tepicnaym_clean_phone($form_state['values']['cellphone']))) ) {
+    if ( !empty($node->field_mensajes_enviados) ) {
+      $mensajes_enviados = intval($node->field_mensajes_enviados[LANGUAGE_NONE][0]['value']) + 1;
+    }
+    $nid = $node->nid;
+    tepicnaym_update_phone($node, $mensajes_enviados);
+  } else {
+    tepicnaym_save_phone($form_state['values'], $mensajes_enviados, $nid);
+  }
+
+  // Post message
+  tepicnaym_message_form_submit_message($form_state);
+}
+
+function tepicnaym_message_form2_submit($form, &$form_state) {
+  // Register destino
+  $nid = 0;
+  $mensajes_enviados = 1;
+  if ( ($node = tepicnaym_node_load_by_phone(tepicnaym_clean_phone($form_state['values']['cellphone']))) ) {
+    if ( !empty($node->field_mensajes_enviados) ) {
+      $mensajes_enviados = intval($node->field_mensajes_enviados[LANGUAGE_NONE][0]['value']) + 1;
+    }
+    $nid = $node->nid;
+    tepicnaym_update_phone($node, $mensajes_enviados);
+  } else {
+    tepicnaym_save_phone($form_state['values'], $mensajes_enviados, $nid);
+  }
+
+  // Post message
+  tepicnaym_message_form_submit_message($form_state);
+}
+
+function curl_get($url, array $get = NULL, $options = array()) {
+  $defaults = array( 
+    CURLOPT_URL => $url. (strpos($url, '?') === FALSE ? '?' : ''). http_build_query($get), 
+    CURLOPT_HEADER => 0, 
+    CURLOPT_RETURNTRANSFER => TRUE, 
+    CURLOPT_TIMEOUT => 120, 
+    CURLOPT_USERAGENT => $_SERVER['HTTP_USER_AGENT'], 
+  );
+    
+  $ch = curl_init(); 
+  curl_setopt_array($ch, ($options + $defaults)); 
+  if( ! $result = curl_exec($ch)) { 
+    trigger_error(curl_error($ch)); 
+  } 
+  curl_close($ch); 
+  return $result;
+}
+
+function tepicnaym_login() {
+  $content = '';
+  // Step 1 y 2
+  $app_id = '447464515311951';
+  $app_secret = '918bcb1d686fe538c2c3ff10a3bf58e1';
+  $my_url = 'http://www.tepicnay.mx/'; 
+
+  // Step 3 Redirect user login
+  if ( !isset($_REQUEST['code']) || empty($_REQUEST['code']) ) {
+    // Redirect to login Dialog
+    $_SESSION['state'] = md5(uniqid(rand(), TRUE)); // CSRF protection
+    $dialog_url = "https://www.facebook.com/dialog/oauth?client_id=" 
+      . $app_id . "&redirect_uri=" . urlencode($my_url) . "&state="
+      . $_SESSION['state'] . '&scope=email';
+
+    // Added scope for step 4
+    return "<p><a href=\"{$dialog_url}\">Login with Facebook</a></p>";
+  } else {
+    $code = $_REQUEST['code'];
+  }
+
+  // Step 5 handle the response
+  if ($_SESSION['state'] && ($_SESSION['state'] === $_REQUEST['state']) ) {
+    // state variable matches
+    $token_url = "https://graph.facebook.com/oauth/access_token?"
+       . "client_id=" . $app_id . "&redirect_uri=" . urlencode($my_url)
+       . "&client_secret=" . $app_secret . "&code=" . $code;
+
+     $response = file_get_contents($token_url);
+     $params = null;
+     parse_str($response, $params);
+
+     $_SESSION['access_token'] = $params['access_token'];
+     $_SESSIOn['access_token_expires'] = $params['expires'];  
+
+     $graph_url = "https://graph.facebook.com/me?access_token="  . $params['access_token'];
+
+     $user = json_decode(file_get_contents($graph_url));
+
+     $user = tepicnaym_save_user($user, $params['access_token'], $params['expires']);
+     tepixnaym_login_user($user->uid);
+     drupal_goto('<front>');
+  } else {
+    $content .= "<p>The state does not match. You may be a victim of CSRF.</p>";
+  }
+
+  return $content;
+}
+
+function tepicnaym_save_user($fb_user, $access_token, $expires) {
+  // Check if already exists
+  if ( ($user = user_load_by_mail($fb_user->email)) ) {
+    // Update user
+    return tepicnaym_update_user($user, $fb_user, $access_token, $expires);
+  } else {
+    return tepicnaym_insert_user($fb_user, $access_token, $expires);
+  }
+}
+
+function tepicnaym_update_user($user, $fb_user, $access_token, $expires) {
+  // Update user.
+  $edit = array();
+  $edit['field_first_name'][LANGUAGE_NONE][]['value'] = $fb_user->first_name;
+  $edit['field_last_name'][LANGUAGE_NONE][]['value'] = $fb_user->last_name;
+  $edit['field_gender'][LANGUAGE_NONE][]['value'] = $fb_user->gender; 
+  $edit['field_facebook'][LANGUAGE_NONE][]['value'] = $fb_user->link;
+  $edit['field_facebook_id'][LANGUAGE_NONE][]['value'] = $fb_user->id;
+  $edit['field_facebook_access_token'][LANGUAGE_NONE][]['value'] = $access_token;
+  $edit['field_facebook_expires'][LANGUAGE_NONE][]['value'] = $expires;
+  return user_save($user, $edit);
+}
+
+function tepicnaym_insert_user($fb_user, $access_token, $expires) {
+  // insert user
+  $edit = array();
+  if ( isset($fb_user->username) && !empty($fb_user->username) ) {
+    $edit['name'] = $fb_user->username;
+  } else {
+    // Use email for
+    $edit['name'] = str_replace('@', '.', $fb_user->email);
+  }
+  $edit['pass'] = user_password();
+  $edit['mail'] = $fb_user->email;
+  $edit['status'] = 1;
+  $edit['field_first_name'][LANGUAGE_NONE][]['value'] = $fb_user->first_name;
+  $edit['field_last_name'][LANGUAGE_NONE][]['value'] = $fb_user->last_name;
+  $edit['field_gender'][LANGUAGE_NONE][]['value'] = $fb_user->gender;
+  $edit['field_facebook'][LANGUAGE_NONE][]['value'] = $fb_user->link;
+  $edit['field_facebook_id'][LANGUAGE_NONE][]['value'] = $fb_user->id;
+  $edit['field_facebook_access_token'][LANGUAGE_NONE][]['value'] = $access_token;
+  $edit['field_facebook_expires'][LANGUAGE_NONE][]['value'] = $expires;
+  return user_save(drupal_anonymous_user(), $edit);
+}
+
+function tepixnaym_login_user($uid) {
+  global $user;
+  $user = user_load($uid);
+  user_login_finalize($form_state);
+}
+
+function tepicnaym_menu_cargar() {
+  if ( !isset($_GET['phone']) ) {
+    return l('Telefono', 'mensajes-gratis-prueba', array('query'=>array('phone'=>'3111303778')));
+  }
+
+  print_r(tepicnaym_node_load_by_phone($_GET['phone']));
+  exit;
+}
+
+function tepicnaym_node_load_by_phone($phone) {
+  $query = new EntityFieldQuery();
+  $entities = $query->entityCondition('entity_type', 'node')
+  ->propertyCondition('type', 'telefono')
+  ->fieldCondition('field_telefono', 'value', $phone)
+  ->execute();
+  $result = $query->execute();
+  if ( empty($result) ) {
+    return false;
+  }
+
+  foreach($result['node'] as $key => $fields) {
+    return node_load($key);
+  }
+  
+  return FALSE;
+}
+
+function tepicnaym_save_phone($values, $mensajes = 0, $nid = 0) {
+  global $user;
+  $node = new stdClass(); 
+  $node->language = LANGUAGE_NONE;
+  $node->type = 'telefono'; 
+  $node->title = $values['name']; 
+  $node->uid = $user->uid;
+  node_object_prepare($node);
+  $node->field_telefono[$node->language][0]['value'] = $values['cellphone'];
+  $node->field_mensajes_enviados[$node->language][0]['value'] = $mensajes;
+  // etc.. 
+  $node = node_submit($node);
+  node_save($node);
+  return TRUE;
+}
+
+function tepicnaym_update_phone($node, $mensajes = 0) {
+  $node->language = LANGUAGE_NONE;
+  $node->field_mensajes_enviados[$node->language][0]['value'] = $mensajes;
+  node_save($node);
+  return TRUE;
+}

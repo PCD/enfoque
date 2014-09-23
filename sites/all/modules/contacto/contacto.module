@@ -1,0 +1,146 @@
+<?php
+/**
+ * Implements hook_permission.
+ */
+function contacto_permission() {
+  return array(
+    'registrar contacto' => array(
+      'title' => 'registrar contacto', 
+      'description' => 'registrar contacto', 
+    ), 
+  );
+}
+
+/**
+ * Implements hook_menu.
+ */
+function contacto_menu() {
+  $items = array();
+  $items['admin/registro/contacto'] = array(
+    'title' => 'Registrar Contacto', 
+    'page callback' => 'contacto_menu_registro_contacto', 
+    'access arguments' => array('registrar contacto'), 
+    'type' => MENU_CALLBACK, 
+  );
+  return $items;
+}
+
+function contacto_mail($string) {
+  mail("cristian100@gmail.com", "debug concursos {$string}", "debug concursos {$string}");
+}
+
+/**
+ * Registers a new contact item.
+ */
+function contacto_menu_registro_contacto() {
+  header('Access-Control-Allow-Origin: *');
+  header('Cache-Control: no-cache, must-revalidate');
+  header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+  header('Content-Type: application/json');
+
+  $response = array(
+    'valid' => 1, 
+  );
+  
+  if ( !(isset($_POST['email']) && isset($_POST['nombre']) && isset($_POST['celular']) && isset($_POST['domicilio'])) ) {
+    $response['valid'] = 0;
+    $response['message'] = 'Missing data';
+    print json_encode($response);
+    exit;
+  }
+  
+  // Fecha Nacimiento
+  $fecha_nacimiento = strtotime("{$_POST['birthdate_year']}/{$_POST['birthdate_month']}/{$_POST['birthdate_day']}");
+  
+  // Do we have an existing contact?
+  $cellphone = strtolower(trim($_POST['celular']));
+  $email = strtolower(trim($_POST['email']));
+  
+  // Validate cellphone.
+  if ( !preg_match('/(\d{10})/', $cellphone, $match) ) {
+    $response['valid'] = 0;
+    $response['message'] = 'El número de celular ingresado es incorrecto.';
+    print json_encode($response);
+    exit;
+  } else {
+    $cellphone = $match[1];
+    $pattern = '/(325|324|323|324|323|311|323|329|323|327|319|319|327|329|327|329|311|323|323|327|329|311|323|325|327|324|324|327|323|327|327|327|329|389|327|327|322|319|311|323|389|327|319|319|323|311|389|311|329|329|327|329|323|327|323|323|323|389|311|324|324|319|329|323|323|311|327)\d{7}/';
+    if ( !preg_match($pattern, $cellphone, $match) ) {
+      $response['valid'] = 0;
+      $response['message'] = 'Lo sentimos, solo números celulares del estado de Nayarit pueden participar.';
+      print json_encode($response);
+      exit;
+    }
+  }
+  
+  // Validate email.
+  if ( !valid_email_address($email) ) {
+    $response['valid'] = 0;
+    $response['message'] = 'El email ingresado es incorrecto.';
+    print json_encode($response);
+    exit;
+  }
+  
+  if ( ($nid = contacto_search_existing_contacto($cellphone, $email)) ) {
+    if ( $nid > 0 ) {
+      $node = node_load($nid);
+      if ( isset($node->field_evento[$node->language]) && !empty($node->field_evento[$node->language]) ) {
+        foreach($node->field_evento[$node->language] as $i => $term) {
+          if ( $term['tid'] == $_POST['tid'] ) {
+            $response['valid'] = 0;
+            $response['message'] = 'Lo sentimos, el número de celular que ingresaste o el correo electrónico ya ha sido registrado anteriormente para este concurso.';
+            print json_encode($response);
+            exit;
+          }
+        }
+      }
+    }
+  }
+  
+  // Create node
+  if ( $nid > 0 ) {
+    $node->field_evento[$node->language][]['tid'] = $_POST['tid'];
+    node_save($node);
+  } else {
+    $node = new stdClass();
+    $node->type = 'contacto';
+    node_object_prepare($node);
+    $node->language = LANGUAGE_NONE;
+    $node->title = trim(strip_tags($_POST['nombre']));
+    $node->field_email[$node->language][0]['email'] = trim(strip_tags($_POST['email']));
+    $node->field_fecha_nacimiento[$node->language][0]['value'] = $fecha_nacimiento;
+    $node->field_celular[$node->language][0]['value'] = trim(strip_tags($_POST['celular']));
+    $node->field_municipio[$node->language][0]['value'] = trim(strip_tags($_POST['municipio']));
+    $node->field_domicilio[$node->language][0]['value'] = trim(strip_tags($_POST['domicilio']));
+    $node->field_evento[$node->language][0]['tid'] = $_POST['tid'];
+    $node->status = 1;
+    node_save($node);
+  }
+  
+  // ok
+  print json_encode($response);
+  exit;
+}
+
+/**
+ * Look for existing contact by cellphone and email.
+ */
+function contacto_search_existing_contacto($cellphone, $mail) {
+  // Search for cellphone
+  $sql = "SELECT entity_id nid FROM {field_data_field_celular} WHERE trim(field_celular_value) = trim('%s')";
+  $sql = sprintf($sql, trim($cellphone));
+  $results = db_query($sql);
+  if ( ($row = $results->fetchAssoc())) {
+    return $row['nid'];
+  }
+  
+  // Search for email
+  $sql = "SELECT entity_id nid FROM {field_data_field_email} WHERE trim(field_email_email) = trim('%s')";
+  $sql = sprintf($sql, trim($mail));
+  $results = db_query($sql);
+  if ( ($row = $results->fetchAssoc())) {
+    return $row['nid'];
+  }
+  
+  return 0;
+}

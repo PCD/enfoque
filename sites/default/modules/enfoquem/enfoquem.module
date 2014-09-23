@@ -1,0 +1,159 @@
+<?php
+function enfoquem_permission() {
+  return array(
+    'buscar enfoque' => array(
+      'title' => 'buscar enfoque', 
+      'description' => 'buscar enfoque', 
+    ), 
+  );
+}
+
+function enfoquem_menu() {
+  $items = array();
+  $items['buscar'] = array(
+    'page callback' => 'enfoquem_menu_buscar', 
+    'access arguments' => array('buscar enfoque'), 
+    'type' => MENU_CALLBACK, 
+  );
+  return $items;
+}
+
+function enfoquem_block_info() {
+  $blocks['category_header'] = array(
+    'info' => 'Category Header', 
+  );
+  $blocks['cse_search'] = array(
+    'info' => 'CSE Search', 
+  );
+  return $blocks;
+}
+
+function enfoquem_block_view($delta = '') {
+  $block = array();
+  switch($delta) {
+    case 'category_header':
+      $block['content'] = enfoquem_block_category_header();
+      break;
+
+    case 'cse_search':
+      $block['content'] = enfoquem_block_search_cse();
+      break;
+  }
+  return $block;
+}
+
+/**
+ * Returns a category header block for category.
+ * @return STRING The category header.
+ */
+function enfoquem_block_category_header() {
+  // Look for home page.
+  if ( drupal_is_front_page() ) {
+    return views_embed_view('header_taxonomy', 'block', 1679);
+  }
+  
+  // Look for node.
+  if ( (arg(0) == 'node' && intval(arg(1)) > 0 && is_null(arg(2))) ) {
+    return enfoquem_block_category_header_node(arg(1));
+  }
+  
+  // Look for taxonomy term
+  if ( (arg(0) == 'taxonomy') && arg(1) == 'term' && intval(arg(2)) > 0 ) {
+    return enfoquem_block_category_header_term(arg(2));
+  }
+
+  return false;
+}
+
+/**
+ * Returns a category header block for category used on node.
+ * @param INT $nid The node identifier.
+ * @return STRING The category header.
+ */
+function enfoquem_block_category_header_node($nid) {
+  if ( !($node = node_load($nid)) ) {
+    return false;
+  }
+
+  if ( (isset($node->field_categoria[LANGUAGE_NONE][0]['tid']) && !empty($node->field_categoria[LANGUAGE_NONE][0]['tid'])) ) {
+    $tid = $node->field_categoria[LANGUAGE_NONE][0]['tid'];
+    return views_embed_view('header_taxonomy', 'block', $tid);
+  }
+  
+  if ( (isset($node->field_categoria_opinion[LANGUAGE_NONE][0]['tid']) && !empty($node->field_categoria_opinion[LANGUAGE_NONE][0]['tid'])) ) {
+    $tid = $node->field_categoria_opinion[LANGUAGE_NONE][0]['tid'];
+    return views_embed_view('header_taxonomy', 'block', $tid);
+  }
+  
+  if ( (isset($node->field_categoria_cartoon[LANGUAGE_NONE][0]['tid']) && !empty($node->field_categoria_cartoon[LANGUAGE_NONE][0]['tid'])) ) {
+    $tid = $node->field_categoria_cartoon[LANGUAGE_NONE][0]['tid'];
+    return views_embed_view('header_taxonomy', 'block', $tid);
+  }
+  
+  if ( (isset($node->field_categoria_especial[LANGUAGE_NONE][0]['tid']) && !empty($node->field_categoria_especial[LANGUAGE_NONE][0]['tid'])) ) {
+    $tid = $node->field_categoria_especial[LANGUAGE_NONE][0]['tid'];
+    return views_embed_view('header_taxonomy', 'block', $tid);
+  }
+  
+  return false;
+}
+
+/**
+ * Returns a category header block for category used on term page.
+ * @param INT $tid The category identifier.
+ * @return STRING The category header.
+ */
+function enfoquem_block_category_header_term($tid) {
+  if ( !($term = taxonomy_term_load($tid)) ) {
+    return false;
+  }
+  
+  if ( $term->vocabulary_machine_name != 'category' ) {
+    return false;
+  }
+  
+  return views_embed_view('header_taxonomy', 'block', $term->tid);
+}
+
+function enfoquem_block_search_cse() {
+  return drupal_get_form('enfoquem_search_form');
+}
+
+function enfoquem_search_form($form, &$form_state) {
+  $form = array();
+  $form['#action'] = url('buscar');
+  $form['#method'] = 'get';
+  $form['palabras'] = array(
+    '#type' => 'textfield', 
+    '#placeholder' => 'Escribe lo que buscas', 
+    '#required' => true, 
+  );
+  if ( arg(0) == 'buscar' && isset($_GET['palabras']) ) {
+    $keywords = check_plain($_GET['palabras']);
+    $form['palabras']['#default_value'] = $keywords;
+  }
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Buscar',
+  );
+  return $form;
+}
+
+function enfoquem_menu_buscar() {
+  if ( isset($_GET['palabras']) ) {
+    $keywords = check_plain($_GET['palabras']);
+    $title = "Buscar: {$keywords}";
+  } else {
+    $title = "Buscador";
+  }
+  drupal_set_title($title);
+  return theme('enfoquem-search-results');
+}
+
+function enfoquem_theme() {
+  return array(
+    'enfoquem-search-results' => array(
+      'template' => 'themes/search/enfoquem-search-results', 
+    ), 
+  );
+}

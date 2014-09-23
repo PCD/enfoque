@@ -1,0 +1,5 @@
+name = PCD Facebook
+description = "Provides Custom features for Facebook Integration"
+package = PCD
+core = 7.x
+dependencies[] = fboauth

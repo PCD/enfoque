@@ -1,0 +1,107 @@
+body.page-resultados{
+	h1{
+		color: $rojo_base ;
+		font-size: 110px ;
+		font-weight:100;
+		margin: 0px ;
+		padding-top: 10px ;
+		padding-bottom: 10px ;
+	}	
+	h2 a{
+		color: #fff ;
+		text-shadow: 3px 3px  4px rgba(0,0,0,0.8) ;
+		font-size: 50px ;
+		margin: 5px auto ;
+		text-align: center;
+	}
+}
+
+.view-id-resultados{
+	width: 1200px ;
+	margin: 0 auto ;
+
+	img{
+		width: 600px;
+		height: auto;
+		float: left;
+		margin-top: 50px;
+	}
+
+	a{
+		text-decoration: none ;
+		color: #fff ;
+
+	}
+
+	p{
+
+		font-size: 30px ;
+		color: #fff ;
+		text-align: left ;
+		width: 500px;
+		float: right;
+		display: block ;
+		margin: 5px auto;
+	}
+
+	.widget_pager_bottom_resultados-page{
+
+		width: 1200px ;
+		text-align: center ;
+
+
+	}
+
+	.views-slideshow-controls-bottom{
+		text-align: center ;
+		margin: 0px 400px 0 400px;
+		width: 400px ;
+	}
+
+	#views_slideshow_controls_text_resultados-page span{
+		display: inline-block;
+		margin-right: 25px;
+	}
+
+	#views_slideshow_controls_text_pause_resultados-page a{
+		display: none ;
+	}
+
+	#views_slideshow_controls_text_previous_resultados-page{
+		width: 50px ;
+		height: 50px ;
+		border-radius: 40px;
+		display: block ;
+		text-indent: - 9999px; 
+		background: #fff ;
+		transition: 0.3s ;
+	}
+
+	#views_slideshow_controls_text_previous_resultados-page:hover{
+		background: url("../images/izquierda.png") no-repeat center center ,red ;
+	}
+
+	#views_slideshow_controls_text_next_resultados-page{
+		width: 50px ;
+		height: 50px ;
+		border-radius: 40px ;
+		text-indent: - 9999px; 
+		display: block ;
+		background: #fff ;
+		transition: 0.3s ;
+	}
+
+	#views_slideshow_controls_text_next_resultados-page:hover{
+		background: url("../images/derecha.png") no-repeat center center ,red ;
+	}
+
+	#views_slideshow_slide_counter_resultados-page{
+		display: block;
+		color: white;
+		width: 100px;
+		margin: 0 auto;
+		font-size: 30px
+	}
+
+	
+}

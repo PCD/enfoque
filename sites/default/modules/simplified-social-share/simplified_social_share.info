@@ -1,0 +1,18 @@
+name = Simplified Social Share 
+description = Simplified Social Share module - adds social sharing on a Drupal site!
+package = LoginRadius Simplified Social Share
+core = 7.x
+stylesheets[all][] = simplified_social_share.css
+configure = admin/config/people/simplified_social_share
+
+version = "7.x-1.1"
+core = "7.x"
+project = "simplified_social_share"
+datestamp = "1379488652"
+
+; Information added by drupal.org packaging script on 2013-10-11
+version = "7.x-1.2"
+core = "7.x"
+project = "simplified-social-share"
+datestamp = "1381472216"
+

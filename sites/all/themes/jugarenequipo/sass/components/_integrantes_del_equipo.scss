@@ -1,0 +1,38 @@
+body.page-integrantes-del-equipo{
+	h1{
+		font-size: 110px ;
+		width: 450px;
+		text-align: left;
+		margin: 0 auto ;
+		font-weight:1000;
+	} 
+
+	ul{
+		text-align: center;
+	}
+
+	ul li{
+		list-style: none ;
+		display: inline-block ;
+		margin-right: 100px ;
+		margin-bottom: 130px ;
+	}
+
+	ul li a{
+		text-decoration: none ;
+		color: #fff ;
+		text-shadow: 4px 4px 3px #000 ;	
+		font-size: 45px ;		
+	}
+
+	#views_slideshow_cycle_main_resultados-page .views-field-title,.views-field-title{
+		width: 600px ;
+		text-align: left ;
+
+	}
+
+	#views_slideshow_cycle_main_resultados-page .views-field .views-field-field-imagen-resultado img{
+		width: 600px ;
+	}
+}
+

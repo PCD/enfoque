@@ -1,0 +1,9 @@
+name = "Prensa Module"
+description = "Agrega paginas custom"
+core=7.x
+
+; Information added by drupal.org packaging script on 2012-09-04
+version = "7.x-1.2"
+core = "7.x"
+datestamp = "1346768900"
+

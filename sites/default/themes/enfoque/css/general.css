@@ -1,0 +1,1443 @@
+/** General **/
+.l-page{
+  width: 960px;
+  margin: 0 auto;
+}
+.l-content a.feed-icon{
+  display: none;
+}
+a{
+  color: black;
+  text-decoration: none;
+}
+a:hover{
+  color: #EC7D02;
+  text-decoration: underline;
+}
+
+/** Encabezados **/
+h2 a{
+  color: black;
+}
+h3.block__title{
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 20px;
+  padding: 2px 5px;
+  text-align: center;
+  color: white;
+  background: #EC7D02;
+  margin-bottom: 12px;
+  
+  -moz-box-shadow:    3px 5px 5px 1px #ccc;
+  -webkit-box-shadow: 3px 5px 5px 1px #ccc;
+  box-shadow:         3px 5px 5px 1px #ccc;
+}
+h3.block__title a{
+  display: block;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
+  padding: 2px 5px;
+}
+h3.block__title a:hover{
+  color: black;
+}
+
+/** Custom colours for Taxonomy **/
+.orange{
+  color: white;
+  background: #EC7D02 !important;
+}
+.green{
+  color: white;
+  background: #006B37 !important;
+}
+.purple{
+  color: white;
+  background: #841E7F !important;
+}
+.red{
+  color: white;
+  background: #E5141D !important;
+}
+.grey{
+  color: white;
+  background: #a19e9b !important;
+}
+.blue{
+  color: white;
+  background: #0073BA !important;
+}
+.black{
+  color: white;
+  background: #000000 !important;
+}
+
+
+/** Banners at Top **/
+#block-views-banners-top-block > div.contextual-links-wrapper{
+  display: none !important;
+}
+#block-views-banners-top-block,
+#block-views-banners-top-block-4,
+#block-views-banners-top-block-5{
+  width: 312px;
+  height: 161px;
+  margin-top: 13px;
+  margin-bottom: 13px;
+  border: solid 1px #EEE;
+  margin-right: 10px;
+  float: left;
+}
+#block-views-banners-top-block .views-row{
+  width: 310px;
+  height: 160px;
+  float: none;
+}
+#block-views-banners-top-block .views-row > div{
+  position: relative;
+}
+#block-views-banners-top-block .views-row > div > .contextual-links-wrapper{
+  position: absolute;
+}
+#block-views-banners-top-block .views-row .field{
+  margin: 0;
+}
+#block-views-banners-top-block-5{
+  margin-right: 0;
+}
+
+/** Banners at Right **/
+#block-views-banners-top-block-1 .views-row{
+  margin-bottom: 12px;
+}
+#block-views-banners-top-block-1 .views-row.views-row-last{
+  margin-bottom: 0;
+}
+#block-views-banners-top-block-1 .views-row .field{
+  margin-bottom: 0;
+}
+
+/** Clima Block **/
+#block-weather-system-1{
+  clear: both;
+  margin-top: 12px;
+  background: #000000;
+  color: white;
+  padding: 4px 20px;
+  text-transform: uppercase;
+  font-weight: normal;
+  min-height: 28px;
+}
+#block-weather-system-1 .place, 
+#block-weather-system-1 .image,
+#block-weather-system-1 .temperature,
+#block-weather-system-1 .wind,
+#block-weather-system-1 .humidity{
+  padding-right: 10px;
+  margin-right: 10px;
+  border-right: solid 1px white;
+  float: left;
+}
+#block-weather-system-1 .temperature{
+  padding-right: 0;
+  margin-right: 0;
+  border-right: 0;
+}
+#block-weather-system-1 .wind, 
+#block-weather-system-1 .humidity{
+  border-right: none;
+  margin-right: 0;
+  padding-right: 0;
+  display: none;
+}
+#block-weather-system-1 .image img.weather-image{
+  height: 20px;
+  width: auto;
+}
+
+
+/** Taxonomy Header **/
+.cabecera-principal{
+  width: 960px;
+  height: 165px;
+  background: url(../images/encabezado.jpg) no-repeat;
+  padding: 0;
+  margin: 0 0 12px 0;
+}
+.cabecera-principal .header-image{
+  width: 650px;
+  height: 165px;
+  overflow: hidden;
+  float: left;
+}
+.cabecera-principal .edicion-impresa{
+  float: left;
+  width: 195px;
+  overflow: hidden;
+  height: 165px;
+  position: relative;
+  margin-left: 0px;
+}
+.cabecera-principal .edicion-impresa img{
+  position: absolute;
+  bottom: 0;
+}
+.cabecera-principal .link{
+  float: right;
+  width: 114px;
+  margin-top: 10px;
+}
+.cabecera-principal .link a{
+  display: block;
+  color: white;
+  text-transform: uppercase;
+  font-size: 25px;
+  line-height: 22px;
+  font-weight: bold;
+  font-family: "Maven Pro", Helvetica, Arial, sans-serif;
+}
+.cabecera-principal .header-image a{
+  display: block;
+}
+.cabecera-principal .views-row{
+  position: relative;
+}
+.cabecera-principal .term-edit-link{
+  position: absolute;
+  left: 448px;
+  top: 72px;
+}
+.cabecera-principal .term-edit-link a{
+  display: block;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 1em;
+  color: #ffbb00;
+  text-shadow: 1px 1px 12px black;
+}
+.cabecera-principal .term-edit-link a:hover{
+  color: yellow;
+  text-decoration: none;
+}
+
+
+/** Main Logo **/
+.site-branding{
+  display: none;
+}
+#block-enfoquem-category-header{
+  clear: both;
+  padding-top: 12px;
+}
+
+/** Main Menu **/
+#block-block-1{
+  clear: both;
+  margin-bottom: 12px;
+}
+#block-system-main-menu,
+#block-menu-menu-facebook{
+  background: black;
+  margin-bottom: 12px;
+  clear: both;
+}
+#block-system-main-menu ul,
+#block-system-main-menu ul li,
+#block-menu-menu-facebook ul, 
+#block-menu-menu-facebook ul li{
+  background: transparent !important;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: none;
+}
+#block-system-main-menu ul li.last,
+#block-menu-menu-facebook ul li.last{
+  float: right;
+}
+#block-system-main-menu ul li,
+#block-menu-menu-facebook ul li{
+  position: relative;
+}
+#block-system-main-menu ul li a, 
+#block-menu-menu-facebook ul li a{
+  border: none;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 8px 18px;
+}
+.page-facebook #block-system-main-menu ul li a, 
+.page-facebook #block-menu-menu-facebook ul li a{
+  padding: 8px 11px;
+}
+#block-system-main-menu > ul > li > a,
+#block-menu-menu-facebook > ul > li > a{
+  background: transparent !important;
+}
+#block-system-main-menu ul li a:hover,
+#block-system-main-menu ul li a.active,
+#block-system-main-menu ul li a.active-trail,
+#block-system-main-menu ul li.active-trail > a,
+#block-system-main-menu ul li:hover > a,
+#block-system-main-menu ul li:hover > ul,
+#block-system-main-menu ul li ul li a:hover,
+#block-system-main-menu ul li ul li a.active,
+#block-system-main-menu ul li ul li a.active-trail, 
+#block-menu-menu-facebook ul li a:hover,
+#block-menu-menu-facebook ul li a.active,
+#block-menu-menu-facebook ul li a.active-trail,
+#block-menu-menu-facebook ul li.active-trail > a,
+#block-menu-menu-facebook ul li:hover > a,
+#block-menu-menu-facebook ul li:hover > ul,
+#block-menu-menu-facebook ul li ul li a:hover,
+#block-menu-menu-facebook ul li ul li a.active,
+#block-menu-menu-facebook ul li ul li a.active-trail{
+  background: #EE8100 !important;
+  color: white;
+  text-decoration: none;
+}
+#block-system-main-menu ul li.orange a:hover,
+#block-system-main-menu ul li.orange a.active, 
+#block-system-main-menu ul li.orange a.active-trail, 
+#block-system-main-menu ul li.orange.active-trail a, 
+#block-system-main-menu ul li.orange:hover > a,
+#block-system-main-menu ul li.orange:hover > ul,
+#block-system-main-menu ul li ul li.orange a:hover,
+#block-system-main-menu ul li ul li.orange a.active, 
+#block-system-main-menu ul li ul li.orange a.active-trail,
+#block-menu-menu-facebook ul li.orange a:hover,
+#block-menu-menu-facebook ul li.orange a.active, 
+#block-menu-menu-facebook ul li.orange a.active-trail, 
+#block-menu-menu-facebook ul li.orange.active-trail a, 
+#block-menu-menu-facebook ul li.orange:hover > a,
+#block-menu-menu-facebook ul li.orange:hover > ul,
+#block-menu-menu-facebook ul li ul li.orange a:hover,
+#block-menu-menu-facebook ul li ul li.orange a.active, 
+#block-menu-menu-facebook ul li ul li.orange a.active-trail{
+  background: #EC7D02 !important;
+}
+#block-system-main-menu ul li.green a:hover,
+#block-system-main-menu ul li.green a.active, 
+#block-system-main-menu ul li.green a.active-trail, 
+#block-system-main-menu ul li.green.active-trail a, 
+#block-system-main-menu ul li.green:hover > a,
+#block-system-main-menu ul li.green:hover > ul,
+#block-system-main-menu ul li ul li.green a:hover,
+#block-system-main-menu ul li ul li.green a.active, 
+#block-system-main-menu ul li ul li.green a.active-trail, 
+#block-menu-menu-facebook ul li.green a:hover,
+#block-menu-menu-facebook ul li.green a.active, 
+#block-menu-menu-facebook ul li.green a.active-trail, 
+#block-menu-menu-facebook ul li.green.active-trail a, 
+#block-menu-menu-facebook ul li.green:hover > a,
+#block-menu-menu-facebook ul li.green:hover > ul,
+#block-menu-menu-facebook ul li ul li.green a:hover,
+#block-menu-menu-facebook ul li ul li.green a.active, 
+#block-menu-menu-facebook ul li ul li.green a.active-trail{
+  background: #006B37 !important;
+}
+#block-system-main-menu ul li.purple a:hover,
+#block-system-main-menu ul li.purple a.active,
+#block-system-main-menu ul li.purple a.active-trail,
+#block-system-main-menu ul li.purple.active-trail a, 
+#block-system-main-menu ul li.purple:hover > a,
+#block-system-main-menu ul li.purple:hover > ul,
+#block-system-main-menu ul li ul li.purple a:hover,
+#block-system-main-menu ul li ul li.purple a.active,
+#block-system-main-menu ul li ul li.purple a.active-trail, 
+#block-menu-menu-facebook ul li.purple a:hover,
+#block-menu-menu-facebook ul li.purple a.active,
+#block-menu-menu-facebook ul li.purple a.active-trail,
+#block-menu-menu-facebook ul li.purple.active-trail a, 
+#block-menu-menu-facebook ul li.purple:hover > a,
+#block-menu-menu-facebook ul li.purple:hover > ul,
+#block-menu-menu-facebook ul li ul li.purple a:hover,
+#block-menu-menu-facebook ul li ul li.purple a.active,
+#block-menu-menu-facebook ul li ul li.purple a.active-trail{
+  background: #841E7F !important;
+}
+#block-system-main-menu ul li.red a:hover,
+#block-system-main-menu ul li.red a.active, 
+#block-system-main-menu ul li.red a.active-trail, 
+#block-system-main-menu ul li.red.active-trail a, 
+#block-system-main-menu ul li.red:hover > a,
+#block-system-main-menu ul li.red:hover > ul,
+#block-system-main-menu ul li ul li.red a:hover,
+#block-system-main-menu ul li ul li.red a.active,
+#block-system-main-menu ul li ul li.red a.active-trail, 
+#block-menu-menu-facebook ul li.red a:hover,
+#block-menu-menu-facebook ul li.red a.active, 
+#block-menu-menu-facebook ul li.red a.active-trail, 
+#block-menu-menu-facebook ul li.red.active-trail a, 
+#block-menu-menu-facebook ul li.red:hover > a,
+#block-menu-menu-facebook ul li.red:hover > ul,
+#block-menu-menu-facebook ul li ul li.red a:hover,
+#block-menu-menu-facebook ul li ul li.red a.active,
+#block-menu-menu-facebook ul li ul li.red a.active-trail{
+  background: #E5141D !important;
+}
+#block-system-main-menu ul li.grey a:hover,
+#block-system-main-menu ul li.grey a.active,,
+#block-system-main-menu ul li.grey a.active-trail,
+#block-system-main-menu ul li.grey.active-trail a, 
+#block-system-main-menu ul li.grey:hover > a,
+#block-system-main-menu ul li.grey:hover > ul,
+#block-system-main-menu ul li ul li.grey a:hover,
+#block-system-main-menu ul li ul li.grey a.active,
+#block-system-main-menu ul li ul li.grey a.active-trail, 
+#block-menu-menu-facebook ul li.grey a:hover,
+#block-menu-menu-facebook ul li.grey a.active,,
+#block-menu-menu-facebook ul li.grey a.active-trail,
+#block-menu-menu-facebook ul li.grey.active-trail a, 
+#block-menu-menu-facebook ul li.grey:hover > a,
+#block-menu-menu-facebook ul li.grey:hover > ul,
+#block-menu-menu-facebook ul li ul li.grey a:hover,
+#block-menu-menu-facebook ul li ul li.grey a.active,
+#block-menu-menu-facebook ul li ul li.grey a.active-trail{
+  background: #a19e9b !important;
+}
+#block-system-main-menu ul li.blue a:hover,
+#block-system-main-menu ul li.blue a.active,
+#block-system-main-menu ul li.blue a.active-trail,
+#block-system-main-menu ul li.blue.active-trail a, 
+#block-system-main-menu ul li.blue:hover > a,
+#block-system-main-menu ul li.blue:hover > ul,
+#block-system-main-menu ul li ul li.blue a:hover,
+#block-system-main-menu ul li ul li.blue a.active,
+#block-system-main-menu ul li ul li.blue a.active-trail, 
+#block-menu-menu-facebook ul li.blue a:hover,
+#block-menu-menu-facebook ul li.blue a.active,
+#block-menu-menu-facebook ul li.blue a.active-trail,
+#block-menu-menu-facebook ul li.blue.active-trail a, 
+#block-menu-menu-facebook ul li.blue:hover > a,
+#block-menu-menu-facebook ul li.blue:hover > ul,
+#block-menu-menu-facebook ul li ul li.blue a:hover,
+#block-menu-menu-facebook ul li ul li.blue a.active,
+#block-menu-menu-facebook ul li ul li.blue a.active-trail{
+  background: #0073BA !important;
+}
+#block-system-main-menu ul li.black a:hover,
+#block-system-main-menu ul li.black a.active, 
+#block-system-main-menu ul li.black a.active-trail, 
+#block-system-main-menu ul li.black.active-trail a, 
+#block-system-main-menu ul li.black:hover > a,
+#block-system-main-menu ul li.black:hover > ul,
+#block-system-main-menu ul li ul li.black a:hover,
+#block-system-main-menu ul li ul li.black a.active,
+#block-system-main-menu ul li ul li.black a.active-trail, 
+#block-menu-menu-facebook ul li.black a:hover,
+#block-menu-menu-facebook ul li.black a.active, 
+#block-menu-menu-facebook ul li.black a.active-trail, 
+#block-menu-menu-facebook ul li.black.active-trail a, 
+#block-menu-menu-facebook ul li.black:hover > a,
+#block-menu-menu-facebook ul li.black:hover > ul,
+#block-menu-menu-facebook ul li ul li.black a:hover,
+#block-menu-menu-facebook ul li ul li.black a.active,
+#block-menu-menu-facebook ul li ul li.black a.active-trail{
+  background: #000000 !important;
+}
+#block-system-main-menu ul li ul, 
+#block-menu-menu-facebook ul li ul{
+  display: none;
+  position: absolute;
+  top: 31px;
+  background: black !important;
+  z-index: 10;
+  margin: 0;
+  padding: 0;
+  min-width: 100%;
+}
+#block-system-main-menu ul li.last ul, 
+#block-menu-menu-facebook ul li.last ul{
+  right: 0;
+}
+#block-system-main-menu ul li:hover ul, 
+#block-menu-menu-facebook ul li:hover ul{
+  display: block;
+}
+#block-system-main-menu ul li ul li, 
+#block-menu-menu-facebook ul li ul li{
+  float: none;
+  position: static;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+#block-system-main-menu ul li ul li a, 
+#block-menu-menu-facebook ul li ul li a{
+  width: 100%;
+  white-space: nowrap;
+}
+#block-system-main-menu ul li ul li a:hover,
+#block-system-main-menu ul li ul li a.active, 
+#block-menu-menu-facebook ul li ul li a:hover,
+#block-menu-menu-facebook ul li ul li a.active{
+  color: black;
+}
+
+/** Highlighted Area **/
+.l-highlighted-wrapper .l-region--highlighted{
+  min-height: 275px;
+}
+
+/** Primer Nota **/
+#block-views-nota-principal-block-2{
+  margin-bottom: 12px;
+  margin-right: 12px;
+  float: left;
+}
+#block-views-nota-principal-block-2,
+#block-views-nota-principal-block-2 .views-row{
+  width: 548px;
+  height: 275px;
+}
+#block-views-nota-principal-block-2 .views-row{
+  position: relative;
+}
+#block-views-nota-principal-block-2 .views-row h3{
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  width: 548px;
+}
+#block-views-nota-principal-block-2 .views-row h3 a{
+  background: rgba(255, 255, 255, 0.7);
+  color: #010101;
+  display: block;
+  text-transform: none;
+  padding: 5px;
+  font-size: 16px;
+  line-height: 18px;
+}
+#block-views-nota-principal-block-2 .views-row h3 a:hover{
+  background: rgba(236, 125, 2, 0.7);
+}
+#views_slideshow_controls_text_pause_nota_principal-block_2{
+  display: none;
+}
+#views_slideshow_controls_text_previous_nota_principal-block_2{
+  float: left;
+}
+#views_slideshow_controls_text_next_nota_principal-block_2{
+  float: right;
+}
+#views_slideshow_controls_text_previous_nota_principal-block_2 a, 
+#views_slideshow_controls_text_next_nota_principal-block_2 a{
+  display: block;
+  height: 24px;
+  width: 24px;
+  text-indent: -9999px;
+  background: url(../images/carrusel-icons.png) no-repeat 0 0;
+}
+#views_slideshow_controls_text_next_nota_principal-block_2 a{
+  background-position: 0 -25px;
+}
+#block-views-nota-principal-block-2 .skin-default{
+  position: relative;
+}
+#block-views-nota-principal-block-2 .views-slideshow-controls-top{
+  width: 548px;
+  position: absolute;
+  top: 125px;
+  z-index: 20;
+}
+
+/** Twitter Feeds **/
+#block-block-7{
+  width: 400px;
+  height: 275px;
+  float: left;
+  margin-bottom: 12px;
+}
+
+/** Lo Mas Destacado **/
+#block-views-nota-principal-block-1{
+  margin-bottom: 12px;
+  height: 275px;
+  width: 478px;
+  float: left;
+}
+#block-views-nota-principal-block-1 h3.block__title{
+  margin-right: 227px;
+}
+#block-views-nota-principal-block-1 .image{
+  float: right;
+  width: 215px;
+  height: 275px;
+}
+#block-views-nota-principal-block-1 h4{
+  margin-right: 227px;
+  font-size: 28px;
+  line-height: 32px;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+}
+#block-views-nota-principal-block-1 h4 a{
+  display: block;
+}
+#block-views-nota-principal-block-1 h4 a:hover{
+  text-decoration: underline;
+}
+#block-views-nota-principal-block-1 .body{
+  margin-right: 227px;
+}
+#block-views-nota-principal-block-1 .body p{
+  margin: 0;
+}
+#block-views-nota-principal-block-1 .body p+p{
+  margin-top: 12px;
+}
+
+/** Bloque de Videos **/
+#block-views-videos-block{
+  background: black;
+  color: white;
+  padding: 6px;
+  margin-bottom: 12px;
+}
+#block-views-videos-block h3{
+  margin: 6px 0;
+}
+#block-views-videos-block h3 a{
+  color: white;
+  font-weight: normal;
+}
+#block-views-videos-block .body{
+  font-size: 12px;
+  line-height: 14px;
+  margin-bottom: 12px;
+}
+#block-views-videos-block .bx-controls{
+  text-align: center;
+}
+#block-views-videos-block .bx-pager-item{
+  display: inline-block;
+}
+#block-views-videos-block .bx-pager-item+.bx-pager-item{
+  margin-left: 6px;
+}
+#block-views-videos-block .bx-pager-item a{
+  display: block;
+  background: #D0CCC9;
+  padding: 2px 10px;
+  text-decoration: none;
+  color: black;
+}
+#block-views-videos-block .bx-pager-item a.active,
+#block-views-videos-block .bx-pager-item a:hover{
+  background: #EC7D02;
+}
+
+/** Home Ultimas Noticias **/
+.front .view-noticias-home{
+  width: 300px;
+}
+.view-noticias-home .views-row{
+  margin-bottom: 24px;
+}
+.view-noticias-home .views-row.views-row-last{
+  margin-bottom: 0;
+}
+.page-ultimas-noticias h1{
+  display: none;
+}
+.view-noticias-home h4{
+  font-size: 16px;
+  line-height: 16px;
+  margin-bottom: 9px;
+  margin-top: 9px;
+}
+.view-noticias-home .date-ago{
+  margin-right: 12px;
+  font-size: 12px;
+  color: #EF7815;
+  float: left;
+}
+.view-noticias-home p.body{
+  padding-top: 2px;
+  font-size: 13px;
+  line-height: 15px;
+  margin-bottom: 0;
+}
+
+/** Especiales **/
+#block-views-especiales-block{
+  width: 240px;
+  float: left;
+  margin: 0 12px 12px 0;
+}
+#block-views-especiales-block h3.block__title{
+  margin-bottom: 12px !important;
+}
+#block-views-especiales-block .views-row{
+  margin-bottom: 12px;
+}
+#block-views-especiales-block .el-especial-de-la-carta .views-row{
+  margin-bottom: 0;
+}
+#block-views-especiales-block .especial .especial-title a{
+  display: block;
+  width: 240px;
+  height: 80px;
+  text-indent: -9999px;
+  background: url(../images/especial-1b.jpg) no-repeat;
+}
+#block-views-especiales-block .nutricion-con-enfoque .especial-title a{
+  background: url(../images/especial-2b.jpg) no-repeat;
+}
+#block-views-especiales-block .la-entrevista .especial-title a{
+  background: url(../images/especial-3b.jpg) no-repeat;
+}
+#block-views-especiales-block .el-especial-de-la-carta .especial-title a{
+  background: url(../images/especial-4b.jpg) no-repeat;
+}
+
+
+/** Lo Mas Leido **/
+#block-views-lo-mas-leido-block{
+  margin: 0 0 12px 0;
+  width: 169px;
+  float: right;
+}
+#block-views-lo-mas-leido-block h3.block__title,
+#block-views-especiales-block h3.block__title{
+  background: #E5141D;
+}
+#block-views-lo-mas-leido-block ol, 
+#block-views-lo-mas-leido-block ol li{
+  margin: 0;
+  padding: 0;
+}
+#block-views-lo-mas-leido-block ol{
+  padding: 6px 0 6px 22px;
+}
+#block-views-lo-mas-leido-block ol li{
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 14px;
+}
+#block-views-lo-mas-leido-block ol li.views-row-last{
+  margin-bottom: 0;
+}
+#block-views-lo-mas-leido-block ol li a{
+  font-size: 12px;
+  color: black;
+  text-decoration: none;
+  line-height: 14px;
+  display: block;
+  font-weight: normal;
+}
+#block-views-lo-mas-leido-block ol li a:hover{
+  text-decoration: underline;
+}
+
+/** Opinion Block **/
+#block-views-opinion-block{
+  clear: both;
+  width: 170px;
+  float: left;
+  margin-right: 12px;
+  margin-bottom: 12px;
+}
+#block-views-opinion-block h2,
+#block-views-cartoon-dia-block h2{
+  margin-bottom: 12px;
+}
+#block-views-opinion-block h2 a,
+#block-views-cartoon-dia-block h2 a{
+  font-weight: bold;
+  font-size: 12px;
+  display: block;
+  line-height: 12px;
+  padding: 2px 5px;
+  text-align: center;
+}
+#block-views-opinion-block .views-row{
+  clear: both;
+  margin-bottom: 14px;
+  min-height: 45px;
+}
+#block-views-opinion-block .views-row.views-row-last{
+  margin-bottom: 0;
+}
+#block-views-opinion-block .image{
+  float: left;
+  width: 45px;
+  height: 45px;
+}
+#block-views-opinion-block h4{
+  font-size: 10px;
+  line-height: normal;
+  margin-left: 50px;
+  font-weight: normal;
+}
+#block-views-opinion-block h4 a{
+  font-size: 10px;
+  color: black;
+  text-transform: none;
+  padding: 0;
+}
+#block-views-opinion-block h4 a:hover{
+
+  text-decoration: underline;
+}
+#block-views-opinion-block p.body{
+  font-size: 8px;
+  margin-left: 50px;
+}
+
+/** Cartoon del Dia **/
+#block-views-cartoon-dia-block{
+  width: 239px;
+  margin-bottom: 12px;
+  float: right;
+}
+
+/** Facebook Like Box **/
+#block-block-2{
+  clear: both;
+  margin-top: 12px;
+}
+
+/** Columns for Front **/
+.l-main{
+  clear: both;
+  margin-top: 12px;
+}
+.l-main > .l-content{
+  width: 300px;
+  margin-right: 12px;
+  float: left;
+  margin-bottom: 12px;
+}
+.not-front .l-main > .l-content{
+  width: 733px;
+}
+.not-front.no-sidebars .l-main > .l-content{
+  width: 100%;
+}
+.l-main > .l-region--sidebar-first{
+  width: 421px;
+  margin-right: 12px;
+  float: left;
+  margin-bottom: 12px;
+}
+.l-main > .l-region--sidebar-second{
+  width: 215px;
+  float: left;
+  margin-bottom: 12px;
+}
+.l-main > .l-region--sidebar-second .block{
+  margin-bottom: 0;
+}
+.l-main > .l-region--sidebar-second .block+.block{
+  margin-top: 12px;
+}
+.l-main > .l-region--sidebar-second .block .field{
+  margin: 0;
+}
+.l-footer-wrapper{
+  margin-top: 12px;
+  clear: both;
+  background: black;
+  padding: 6px 14px 5px 14px;
+  min-height: 58px;
+}
+#block-imageblock-1{
+  width: 176px;
+  height: 46px;
+  float: left;
+  margin-right: 24px;
+}
+#block-block-3{
+  color: white;
+  font-size: 12px;
+  font-weight: normal;
+  float: left;
+  margin-top: 11px;
+  width: 371px;
+}
+#block-block-3 p{
+  margin: 0;
+}
+#block-block-3 p+p{
+  margin-top: 6px;
+}
+#block-menu-menu-footer{
+  float: right;
+  width: 350px;
+  margin-top: 8px;
+}
+#block-menu-menu-footer ul, 
+#block-menu-menu-footer ul li{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#block-menu-menu-footer ul{
+  text-align: right;
+}
+#block-menu-menu-footer ul li{
+  display: inline-block;
+}
+#block-menu-menu-footer ul li+li{
+  margin-left: 24px;
+}
+#block-menu-menu-footer ul li a{
+  text-align: center;
+  display: block;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+#block-menu-menu-footer ul li a:hover{
+  text-decoration: underline;
+}
+#footer-contacto-link{
+  width: 70px;
+}
+#footer-terminos-link{
+  width: 76px;
+}
+#footer-privacidad-link{
+  width: 70px;
+}
+
+/** Page Cartoon **/
+.view-cartoon-dia.view-display-id-page_1 .views-view-grid td{
+  padding: 0;
+}
+.view-cartoon-dia.view-display-id-page_1 .pager{
+  display: none;
+}
+
+/** General Node Pages **/
+.page-node h1,
+.page-user h1, 
+.page-buscar h1, 
+.page-taxonomy h1,
+.page-edicion-impresa h1,
+.page-noticias h1{
+  font-size: 35px;
+  line-height: normal;
+  text-transform: none;
+  letter-spacing: -1px;
+  color: black;
+  margin-bottom: 24px;
+}
+.page-node .ds-2col-stacked .group-left{
+  width: 300px;
+  margin-right: 12px;
+}
+.page-node.node-type-edicion-impresa .ds-2col-stacked .group-left{
+  width: 145px;
+}
+.page-node .ds-2col-stacked .group-right{
+  width: 421px;
+}
+.page-node.node-type-edicion-impresa .ds-2col-stacked .group-right{
+  width: 576px;
+}
+.page-node.node-type-edicion-impresa .ds-2col-stacked .group-right .field--name-field-pdf iframe.pdf{
+  height: 1028px;
+}
+.page-node .ds-2col-stacked .group-left .field h2.block-title{
+  color: black;
+  font-size: 20px;
+  padding-left: 6px;
+  border-top: solid 2px black;
+  border-bottom: solid 2px black;
+  margin-bottom: 6px;
+}
+.page-node .view-noticias-relacionadas .views-row h3{
+  font-size: 14px;
+  margin: 0;
+}
+.page-node .view-noticias-relacionadas .views-row h3 a{
+  display: block;
+  padding: 6px;
+  border-bottom: dashed 1px black;
+  text-transform: none;
+}
+.page-node .view-noticias-relacionadas .views-row h3 a:hover{
+  text-decoration: underline;
+}
+
+
+/** Node Teasers **/
+article.ds-2col{
+  position: relative;
+}
+.view-taxonomy-term .views-row+.views-row, 
+article.ds-2col+article{
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px dashed #ccc;
+}
+.section-cartoon .view-taxonomy-term .views-row+.views-row{
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+article.ds-2col .group-left{
+  width: 150px;
+  margin-right: 12px;
+}
+article.ds-2col .group-right{
+  width: 571px;
+}
+article.ds-2col h2{
+  text-transform: none;
+  font-size: 17px;
+  color: black;
+}
+article.ds-2col h3,
+.page-edicion-impresa .l-content .views-row h3{
+  font-size: 24px;
+  text-transform: uppercase;
+  font-weight: normal;
+  margin: 0;
+}
+article.ds-2col .group-right .field--name-title{
+  margin-bottom: 12px;
+}
+article.ds-2col .group-right .field--name-body{
+  margin-bottom: 0;
+  font-size: 13px;
+}
+article.ds-2col .group-right.edicion-impresa h2{
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+article.ds-2col .group-right .field--name-edicion-impresa,
+article.ds-2col .group-right.edicion-impresa .field--name-title,
+article.ds-2col .group-left .field--name-field-image,
+article.ds-2col .group-left .field--name-field-imagen-resumen{
+  margin: 0;
+}
+
+/** Edicion Impresa **/
+.page-edicion-impresa .l-content .views-row{
+  clear: both;
+  padding: 24px 0;
+  min-height: 85px;
+}
+.page-edicion-impresa .l-content .views-row+.views-row{
+  border-top: 1px dashed #ccc;
+  margin-top: 24px;
+}
+.page-edicion-impresa .l-content .views-row-1{
+  padding-top: 0;
+}
+.page-edicion-impresa .l-content .principal .views-row-1,
+.page-edicion-impresa .l-content .principal .views-row-2,
+.page-edicion-impresa .l-content .principal .views-row-3,
+.page-edicion-impresa .l-content .principal .views-row-4{
+  clear: none;
+  float: left;
+  margin: 0 21px 24px 0 !important;
+  border-top: none !important;
+  padding: 0 !important;
+}
+.page-edicion-impresa .l-content .principal .views-row-4{
+  margin-right: 0 !important;
+}
+.page-edicion-impresa .l-content .principal .views-row-1 .image img,
+.page-edicion-impresa .l-content .principal .views-row-2 .image img,
+.page-edicion-impresa .l-content .principal .views-row-3 .image img,
+.page-edicion-impresa .l-content .principal .views-row-4 .image img{
+  width: 145px !important;
+  height: 255px !important;
+}
+.page-edicion-impresa .l-content .principal .views-row-1 .image a,
+.page-edicion-impresa .l-content .principal .views-row-2 .image a,
+.page-edicion-impresa .l-content .principal .views-row-3 .image a,
+.page-edicion-impresa .l-content .principal .views-row-4 .image a{
+  display: block;
+  padding: 10px;
+  background: white;
+  border: solid 1px #eee;
+  -moz-box-shadow:    3px 5px 5px 1px #ccc;
+  -webkit-box-shadow: 3px 5px 5px 1px #ccc;
+  box-shadow:         3px 5px 5px 1px #ccc;
+}
+.page-edicion-impresa .l-content .principal .views-row-1 .image a:hover,
+.page-edicion-impresa .l-content .principal .views-row-2 .image a:hover,
+.page-edicion-impresa .l-content .principal .views-row-3 .image a:hover,
+.page-edicion-impresa .l-content .principal .views-row-4 .image a:hover{
+  -moz-box-shadow:    3px 5px 5px 1px #e0bb91;
+  -webkit-box-shadow: 3px 5px 5px 1px #e0bb91;
+  box-shadow:         3px 5px 5px 1px #e0bb91;
+}
+.page-edicion-impresa .l-content .views-row .image.portada{
+  display: none;
+}
+.page-edicion-impresa .l-content .principal .views-row-1 .image.portada,
+.page-edicion-impresa .l-content .principal .views-row-2 .image.portada,
+.page-edicion-impresa .l-content .principal .views-row-3 .image.portada,
+.page-edicion-impresa .l-content .principal .views-row-4 .image.portada{
+  display: block;
+}
+.page-edicion-impresa .l-content .principal .views-row-1 .image.resumen,
+.page-edicion-impresa .l-content .principal .views-row-2 .image.resumen,
+.page-edicion-impresa .l-content .principal .views-row-3 .image.resumen,
+.page-edicion-impresa .l-content .principal .views-row-4 .image.resumen{
+  display: none;
+}
+.page-edicion-impresa .l-content .principal .views-row-1 h2,
+.page-edicion-impresa .l-content .principal .views-row-2 h2,
+.page-edicion-impresa .l-content .principal .views-row-3 h2,
+.page-edicion-impresa .l-content .principal .views-row-4 h2,
+.page-edicion-impresa .l-content .principal .views-row-1 h3,
+.page-edicion-impresa .l-content .principal .views-row-2 h3,
+.page-edicion-impresa .l-content .principal .views-row-3 h3,
+.page-edicion-impresa .l-content .principal .views-row-4 h3,
+.page-edicion-impresa .l-content .principal .views-row-1 .date,
+.page-edicion-impresa .l-content .principal .views-row-2 .date,
+.page-edicion-impresa .l-content .principal .views-row-3 .date,
+.page-edicion-impresa .l-content .principal .views-row-4 .date{
+  display: none;
+}
+.page-edicion-impresa .l-content .views-row-5{
+  clear: both;
+  margin-top: 24px;
+}
+.page-edicion-impresa .l-content .views-row h2{
+  margin-top: 10px;
+  margin-bottom: 0;
+  text-transform: none;
+  font-size: 17px;
+  color: black;
+}
+.page-edicion-impresa .l-content .views-row .image.resumen{
+  float: left;
+  width: 150px;
+  margin-right: 12px;
+}
+
+/** Mas Ediciones Block **/
+#block-views-edicion-impresa-block-1 h3.block__title{
+  display: none;
+}
+#block-views-edicion-impresa-block-1 .image a{
+  display: block;
+  padding: 5px;
+  border: solid 1px #eee;
+  -moz-box-shadow:    3px 5px 5px 1px #ccc;
+  -webkit-box-shadow: 3px 5px 5px 1px #ccc;
+  box-shadow:         3px 5px 5px 1px #ccc;
+}
+#block-views-edicion-impresa-block-1 .image a img{
+  width: 133px;
+  height: 234px;
+}
+
+
+/** Social Share Bar **/
+.page-node.node-type-edicion-impresa .group_autor_line{
+  float: left;
+  width: 463px;
+}
+.page-node.node-type-edicion-impresa .group-left{
+  clear: left;
+}
+.page-node.node-type-edicion-impresa .field--name-social-bar{
+  float: right;
+  width: 258px;
+  height: 40px;
+  margin: 0 0 12px 0;
+}
+.page-node.node-type-edicion-impresa .field--name-social-bar .lrsharecontainer{
+  padding: 0 !important;
+}
+
+/** Cartoon Teaser and Full **/
+.page-taxonomy.section-cartoon .l-content{
+  width: 745px;
+  margin-right: 0;
+}
+article.cartoon.teaser{
+  width: 350px;
+  float: left;
+  margin-right: 22px;
+  margin-bottom: 24px;
+}
+article.cartoon.teaser h2{
+  text-transform: uppercase;
+  font-size: 17px;
+  color: black;
+  margin: 0 0 6px 0;
+}
+article.cartoon.teaser .field{
+  margin: 0;
+}
+article.cartoon.teaser .field--name-field-image{
+  width: 350px;
+  height: 249px;
+}
+article.cartoon.teaser .field--name-field-image a{
+  display: block;
+  padding: 5px;
+  width: 348px;
+  height: 237px;
+  border: solid 1px #eee;
+  border-right-color: #ccc;
+  -moz-box-shadow:    3px 5px 5px 1px #ccc;
+  -webkit-box-shadow: 3px 5px 5px 1px #ccc;
+  box-shadow:         3px 5px 5px 1px #ccc;
+}
+article.cartoon.teaser .field--name-field-image a:hover{
+  -moz-box-shadow:    3px 5px 5px 1px #e0bb91;
+  -webkit-box-shadow: 3px 5px 5px 1px #e0bb91;
+  box-shadow:         3px 5px 5px 1px #e0bb91;
+}
+article.cartoon.teaser .field--name-field-image a img{
+  width: 338px;
+  height: 227px;
+}
+.page-node.node-type-cartoon .l-content .ds-1col .field--name-field-image{
+  padding: 10px;
+  width: 731px;
+  border: solid 1px #eee;
+  border-right-color: #ccc;
+  margin: 0;
+  -moz-box-shadow:    3px 5px 5px 1px #ccc;
+  -webkit-box-shadow: 3px 5px 5px 1px #ccc;
+  box-shadow:         3px 5px 5px 1px #ccc;
+}
+
+/** Pagination **/
+ul.pager li.pager__item a:hover{
+  text-decoration: none;
+}
+ul.pager li.pager__item.pager__item--current{
+  background: #e4621c;
+  border-color: #e4621c;
+  color: #FFF;
+}
+
+/** Autor, Lugar y Fecha **/
+.group_autor_line{
+  clear: both;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12px;
+  margin-bottom: 24px;
+}
+.group_autor_line > .field{
+  display: inline-block;
+  margin: 0 10px 0 0;
+}
+.group_autor_line > .field--name-field-date{
+  margin: 0 0 0 20px;
+  font-weight: normal;
+}
+.group_autor_line > .field--type-taxonomy-term-reference .field__item{
+  float: none;
+  margin: 0;
+}
+.taxonomy-term--category > .field--name-title{
+  margin: 0;
+}
+.taxonomy-term--category > .field--name-title .field__item{
+  float: none;
+  margin: 0;
+}
+.taxonomy-term--category > .field--name-title .field__item h3.term-title{
+  font-size: 35px;
+  line-height: normal;
+  color: black;
+  margin-bottom: 12px;
+  letter-spacing: -1px;
+  text-transform: none;
+}
+
+/** Admin Pages **/
+form.taxonomy-form-term .form-item-taxonomy-breadcrumb-path,
+form.taxonomy-form-term #edit-relations,
+form.taxonomy-form-term #edit-field-image-single .messages--error,
+.page-node-edit #edit-field-sumario-und-0-format, 
+.page-node-edit #edit-body-und-0-format, 
+.page-node-edit #edit-field-destacado,
+.page-node-edit .form-item-body-und-0-value label span.field-edit-link,
+#menu-edit-item .form-item-enabled,
+#menu-edit-item .form-item-expanded,
+#menu-edit-item .form-item-parent,
+#menu-edit-item #edit-options-attributes, 
+#menu-edit-item .form-item-weight{
+  display: none;
+}
+input.form-submit+input.form-submit{
+  margin-left: 10px;
+}
+.tabledrag-handle .handle{
+  background: orange;
+  height: 30px;
+}
+dd{
+  margin: 0 0 0 10px;
+}
+dd+dt{
+  margin-top: 20px;
+}
+dt a{
+  color: #EC7D02;
+}
+.group-hide.hidden{
+  display: none;
+}
+
+
+#social-header{
+  display: block;
+  margin-top: 14px;
+  width: 114px;
+  float: left;
+}
+#social-header h2{
+  color: black;
+  font-size: 16px;
+  letter-spacing: -1px;
+  font-weight: bold;
+  line-height: 1em;
+}
+#social-header .content{
+  text-align: center;
+  padding-top: 4px;
+}
+#social-header-fb{
+  width: 31px;
+  height: 30px;
+  display: inline-block;
+  background: url(../images/iconfb.png) no-repeat;
+  text-indent: -9999px;
+  margin-right: 10px;
+}
+#social-header-tw{
+  width: 31px;
+  height: 30px;
+  display: inline-block;
+  background: url(../images/icontw.png) no-repeat;
+  text-indent: -9999px;
+}
+
+/** Search Form **/
+#block-views-header-taxonomy-block{
+  clear: both;
+  padding-top: 12px;
+}
+#block-weather-system-1{
+  margin-top: 0;
+  float: left;
+  width: 740px;
+}
+#block-weather-system-1 .block__title{
+  display: none;
+}
+#block-weather-system-1 .weather p{
+  margin: 0;
+}
+#block-weather-system-1 .weather p strong a{
+  color: white;
+  font-weight: normal;
+  text-decoration: none;
+  cursor: default;
+}
+#block-enfoquem-cse-search{
+  height: 28px;
+  margin: 0;
+  background: black;
+  width: 220px;
+  float: left;
+  padding: 2px 2px 0 0;
+}
+#block-enfoquem-cse-search .form-item-palabras{
+  width: 165px;
+  margin: 0;
+  float: left;
+}
+#block-enfoquem-cse-search input.form-text{
+  padding: 2px 4px 1px;
+  outline: none;
+  color: black;
+}
+#block-enfoquem-cse-search .form-submit{
+  float: left;
+  background: #e9752d;
+  border: none;
+  color: white;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.page-buscar h1{
+  margin-bottom: 0;
+}
+.gsc-control-cse{
+  padding: 0 !important;
+}
+.gsc-above-wrapper-area{
+  padding: 0 !important;
+}
+.gsc-above-wrapper-area-container{
+  margin: 0 0 12px;
+}
+.gsc-above-wrapper-area-container td,
+.gsc-table-result td{
+  padding: 0 !important;
+}
+.gsc-result-info{
+  padding: 0 !important;
+}
+.gsc-resultsHeader{
+  margin-bottom: 0 !important;
+}
+.gsc-table-result, .gsc-thumbnail-inside, .gsc-url-top{
+  padding: 0 !important;
+}
+.gsc-results .gsc-cursor-box{
+  margin: 0 !important;
+}
+
+
+/** Styles For Facebook Tab */
+.page-facebook .l-page{
+  width: 790px;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-sizing: content-box;
+}
+.page-facebook #block-weather-system-1{
+  width: 530px;
+  min-height: 20px;
+  box-sizing: content-box;
+}
+.page-facebook #block-weather-system-1 .condition,
+.page-facebook .breadcrumb,
+.page-facebook h1{
+  display: none;
+}
+.page-facebook #block-block-3{
+  width: 227px;
+}
+.page-facebook #block-menu-menu-footer{
+  width: 280px;
+}
+.page-facebook .l-footer-wrapper{
+  min-height: 74px;
+}
+#time_range-2,
+#time_range-3,
+#time_range-4,
+#time_range-5,
+#time_range-6,
+#time_range-7,
+#time_range-8{
+  display: none;
+}
